@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<person>
+    <person1>
+        <name>Simul</name>
+        <about>Humber ITS student</about>
+        <interest>Table Tennis, Anime</interest>
+    </person1>
+    <person2>
+        <name>Saphal</name>
+        <about>Ace MBA student</about>
+        <interest>Dota, Anime</interest>
+    </person2>
+</person>

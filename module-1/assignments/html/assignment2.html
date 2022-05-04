@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML and Javascript Assignment2</title>
+    <link rel="stylesheet" href="../css/assignment2.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="form">
+            <label for="email ">Your email *:</label>
+            <input type="email " id="email" name="email "><br>
+            <label for="dov ">Date of Visit:</label>
+            <input type="date" id="dov" name="dov" placeholder="mm/dd/yyyy "><br><br>
+            <label for="comment">Your Comment:</label><br>
+            <textarea name="comment " id="comment" cols="30" rows="10"></textarea><br>
+            <button onclick="displayFormData()">Send your Feedback</button>
+        </div>
+        <div id="emailDisplay"></div>
+        <div id="dovDisplay"></div>
+        <div id="commentDisplay"></div>
+    </div>
+    <script src="../javascript/assignment2.js "></script>
+</body>
+
+</html>

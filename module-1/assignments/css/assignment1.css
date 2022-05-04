@@ -1,0 +1,21 @@
+.container {
+    padding: 10px 50px;
+}
+
+hr {
+    border-top: 3px solid rgb(29, 27, 180);
+}
+
+h1 {
+    font-size: 100px;
+    text-align: center;
+}
+
+#name {
+    padding: 20px;
+    text-align: center;
+}
+
+.button {
+    text-align: center;
+}
