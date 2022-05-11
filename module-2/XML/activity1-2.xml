@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- This document contains business cards and related information -->
+<persons>
+    <person>
+        <name>Rorie Demanche</name>
+        <contact_home ext="+1">7101534949</contact_home>
+        <contact_work ext="+1">5033193558</contact_work>
+        <contact_mobile ext="+1">1827481667</contact_mobile>
+        <website>rdemanche0@foxnews.com</website>
+        <message>
+        <![CDATA[
+        For further information, please visit <our website> or call us on #905-111-2222 & +1-800-111- 2222
+        ]]>]
+        </message>
+    </person>
+    <person>
+        <name>Kelcey Surman</name>
+        <contact_home ext="+1">249926-7376</contact_home>
+        <contact_work ext="+1">208363-6588</contact_work>
+        <contact_mobile ext="+1">982536-6860</contact_mobile>
+        <website>sheddan2@alexa.com</website>
+        <message>
+        <![CDATA[
+        For further information, please visit <our website> or call us on #905-111-2222 & +1-800-111- 2222
+        ]]>]
+        </message>
+    </person>
+    <person>
+        <name>Simon Heddan</name>
+        <contact_home ext="+1">687808-4290</contact_home>
+        <contact_work ext="+1">604815-7810</contact_work>
+        <contact_mobile ext="+1">924174-3271</contact_mobile>
+        <website>sheddan2@alexa.com</website>
+        <message>
+        <![CDATA[
+        For further information, please visit <our website> or call us on #905-111-2222 & +1-800-111- 2222
+        ]]>]
+        </message>
+    </person>
+    <person>
+        <name>Chan Supple</name>
+        <contact_home ext="+1">577165-2495</contact_home>
+        <contact_work ext="+1">547934-7337</contact_work>
+        <contact_mobile ext="+1">367667-0747</contact_mobile>
+        <website>csupple3@123-reg.co.uk</website>
+        <message>
+        <![CDATA[
+        For further information, please visit <our website> or call us on #905-111-2222 & +1-800-111- 2222
+        ]]>]
+        </message>
+    </person>
+</persons>
