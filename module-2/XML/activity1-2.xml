@@ -3,9 +3,9 @@
 <persons>
     <person>
         <name>Rorie Demanche</name>
-        <contact_home ext="+1">7101534949</contact_home>
-        <contact_work ext="+1">5033193558</contact_work>
-        <contact_mobile ext="+1">1827481667</contact_mobile>
+        <contact type="home" ext="+1">7101534949</contact>
+        <contact type="work" ext="+1">5033193558</contact>
+        <contact type="mobile" ext="+1">1827481667</contact>
         <website>rdemanche0@foxnews.com</website>
         <message>
         <![CDATA[
@@ -15,9 +15,9 @@
     </person>
     <person>
         <name>Kelcey Surman</name>
-        <contact_home ext="+1">249926-7376</contact_home>
-        <contact_work ext="+1">208363-6588</contact_work>
-        <contact_mobile ext="+1">982536-6860</contact_mobile>
+        <contact type="home" ext="+1">249926-7376</contact>
+        <contact type="work" ext="+1">208363-6588</contact>
+        <contact type="mobile" ext="+1">982536-6860</contact>
         <website>sheddan2@alexa.com</website>
         <message>
         <![CDATA[
@@ -27,9 +27,9 @@
     </person>
     <person>
         <name>Simon Heddan</name>
-        <contact_home ext="+1">687808-4290</contact_home>
-        <contact_work ext="+1">604815-7810</contact_work>
-        <contact_mobile ext="+1">924174-3271</contact_mobile>
+        <contact type="home" ext="+1">687808-4290</contact>
+        <contact type="work" ext="+1">604815-7810</contact>
+        <contact type="mobile" ext="+1">924174-3271</contact>
         <website>sheddan2@alexa.com</website>
         <message>
         <![CDATA[
@@ -39,9 +39,9 @@
     </person>
     <person>
         <name>Chan Supple</name>
-        <contact_home ext="+1">577165-2495</contact_home>
-        <contact_work ext="+1">547934-7337</contact_work>
-        <contact_mobile ext="+1">367667-0747</contact_mobile>
+        <contact type="home" ext="+1">577165-2495</contact>
+        <contact type="work" ext="+1">547934-7337</contact>
+        <contact type="mobile" ext="+1">367667-0747</contact>
         <website>csupple3@123-reg.co.uk</website>
         <message>
         <![CDATA[
