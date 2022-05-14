@@ -13,6 +13,7 @@ Elements in opening and closing tag must be an exact match.
 ![image info](../assets/1_3.png)
 
 2)What is the use of CDATA block in this document?
+
 Generally, CDATA section of XML is not interpreted as markup by the parser rather it is interpreted as character data. In this document, the summary content will be interpreted as characters. Plus CDATA helps us to avoid the use of character reference and entity reference.
 
 ![image info](../assets/2.png)
@@ -22,6 +23,7 @@ Generally, CDATA section of XML is not interpreted as markup by the parser rathe
 ![image info](../assets/3.png)
 
 4)Identify prolog, document body, and epilog in the document. Are there any processing instructions?
+
     a)Prolog:
     line1: <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 
@@ -39,7 +41,8 @@ Generally, CDATA section of XML is not interpreted as markup by the parser rathe
 
     There are no processing instructions but it was added later i.e.
     line2: <?xml-stylesheet type="text/css" href="../style.css" ?>
-    ![image info](../assets/4_4.png)
+    
+![image info](../assets/4_4.png)
 
 5)Add inline DTD for this document.
 
