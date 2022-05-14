@@ -1,7 +1,27 @@
-name {
-  font-weight: bold;
-}
-
-* {
-  display: block;
-}
+    name {
+        font-weight: bold;
+    }
+    
+    * {
+        display: block;
+        padding-left: 10px;
+    }
+    
+    title {
+        font-size: 25px;
+        font-weight: bolder;
+        text-align: center;
+    }
+    
+    originalName {
+        font-size: 20px;
+        color: blue;
+    }
+    
+    category {
+        display: block;
+    }
+    
+    indicator:hover {
+        background-color: yellowgreen;
+    }
