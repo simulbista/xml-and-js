@@ -9,7 +9,7 @@
   <!ATTLIST date type (effective) #REQUIRED>
   <!ELEMENT menu (category,menuItem+)>
   <!ELEMENT category (#PCDATA)>
-  <!ELEMENT menuItem (itemName,description,price,indicator*)+>
+  <!ELEMENT menuItem (itemName,description,price,indicator*)>
   <!ELEMENT description (#PCDATA)>
   <!ELEMENT price (#PCDATA)>
   <!ELEMENT indicator (#PCDATA)>
