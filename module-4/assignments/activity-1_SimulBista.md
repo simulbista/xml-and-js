@@ -18,6 +18,6 @@
 
 4. Target all products with manufacturer id `sjb-pet`
 
-//products/product/manufacturer[@id ='sjb-pet']
+//products/product/manufacturer[@id ='sjb-pet']/..
 
 ![image info](./screenshots/W4-ac1-4.png)
