@@ -50,7 +50,7 @@
                                         <xsl:for-each select="size[@description='Small']/color_swatch">
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select="../color_swatch"/>
+                                                   <xsl:value-of select="."/>
                                                 </td>
                                                 <td>
                                                     <xsl:value-of select="@image"/>
@@ -70,7 +70,7 @@
                                             <xsl:for-each select="size[@description='Medium']/color_swatch">
                                                 <tr>
                                                     <td>
-                                                        <xsl:value-of select="../color_swatch"/>
+                                                        <xsl:value-of select="."/>
                                                     </td>
                                                     <td>
                                                         <xsl:value-of select="@image"/>
@@ -90,7 +90,7 @@
                                         <xsl:for-each select="size[@description='Large']/color_swatch">
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select="../size[@description='Large']/color_swatch"/>
+                                                    <xsl:value-of select="."/>
                                                 </td>
                                                 <td>
                                                     <xsl:value-of select="@image"/>
@@ -110,7 +110,7 @@
                                         <xsl:for-each select="size[@description='Extra Large']/color_swatch">
                                             <tr>
                                                 <td>
-                                                    <xsl:value-of select="../color_swatch"/>
+                                                    <xsl:value-of select="."/>
                                                 </td>
                                                 <td>
                                                     <xsl:value-of select="@image"/>
