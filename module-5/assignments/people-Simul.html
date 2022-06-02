@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <table border="1">
+        <tbody id="people_table">
+            <th>
+                <td>ID</td>
+                <td>Full Name</td>
+                <td>Email</td>
+                <td>Gender</td>
+                <td>IP Address</td>
+            </th>
+        </tbody>
+    </table>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                displayData(this.responseXML);
+            }
+        };
+        xhttp.open("GET", "people.xml", true);
+        xhttp.send();
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function displayData(xmlDoc) {
+            const listElement = document.getElementById(`people_table`);
+
+            const peopleNodes = xmlDoc.getElementsByTagName(`person`);
+            for (let index = 0; index < peopleNodes.length; index++) {
+                const peopleNode = peopleNodes[index];
+                const rowItem = stringToNode(`<tr>
+                    <td></td>  
+          <td>${peopleNode.getAttribute(`id`)}</td>
+          <td>${
+            peopleNode.getElementsByTagName(`first_name`)[0].childNodes[0]
+                .nodeValue
+            } ${
+                peopleNode.getElementsByTagName(`last_name`)[0].childNodes[0]
+              .nodeValue
+          }</td>
+          <td>${peopleNode.getElementsByTagName(`email`)[0].childNodes[0].nodeValue}</td>
+          <td>${peopleNode.getElementsByTagName(`gender`)[0].childNodes[0].nodeValue}</td>
+          <td>${peopleNode.getElementsByTagName(`ip_address`)[0].childNodes[0].nodeValue}</td>
+          </tr>`);
+          listElement.appendChild(rowItem);
+        }
+      }
+    </script>
+</body>
+
+</html>
