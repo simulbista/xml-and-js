@@ -1,0 +1,85 @@
+<!-- Simul Bista - N01489966 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        #customers {
+            border: 1px solid black;
+            padding: 10px;
+            background-color: beige;
+            width: 500px;
+        }
+        
+        #rowitem3 {
+            border-bottom: 2px solid black;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Customer Information:</h1>
+    <div id="customers">
+    </div>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                displayData(this.responseXML);
+            }
+        };
+        xhttp.open("GET", "../customers.xml", true);
+        xhttp.send();
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function displayData(xmlDoc) {
+            const divElement = document.getElementById(`customers`);
+
+            const customerNodes = xmlDoc.getElementsByTagName(`customer`);
+            const orderNodes = xmlDoc.getElementsByTagName('order');
+
+            for (let index = 0; index < customerNodes.length; index++) {
+                const customerNode = customerNodes[index];
+                const orderNode = orderNodes[index];
+                const rowItem1 = stringToNode(`<div id ="row"> 
+                    <div>Customer Id: ${customerNode.getAttribute(`custID`)}</div>
+                    <div>Customer Name: ${customerNode.getElementsByTagName('name')[0].getAttribute(`title`)} ${customerNode.getElementsByTagName('name')[0].childNodes[0].nodeValue}</div>
+                    <div>Address: ${customerNode.getElementsByTagName(`address`)[0].childNodes[0].nodeValue}</div>
+                    <div>Contact: ${customerNode.getElementsByTagName(`phone`)[0].childNodes[0].nodeValue}</div>
+                    `);
+                    
+                    if(customerNode.getElementsByTagName('email').length>=1){
+                            rowItem2 = stringToNode(`<div> 
+                            <div>Email: ${customerNode.getElementsByTagName(`email`)[0].childNodes[0].nodeValue}</div>`);
+                    }else{
+                        rowItem2 = stringToNode(`<div></div>`);
+                    }              
+                                       
+                    const rowItem3 = stringToNode(`<div id='rowitem3'> 
+                    Orders
+                    <div>
+                        <div>ID: ${orderNode.getAttribute(`orderID`)} By: ${orderNode.getAttribute('orderBy')}</div>
+                        <div>Order Date: ${customerNode.getElementsByTagName(`orderDate`)[0].childNodes[0].nodeValue}</div>
+                        Items
+                            <div>
+                                <div>Price: ${customerNode.getElementsByTagName(`itemPrice`)[0].childNodes[0].nodeValue}</div>
+                                <div>Quantity: ${customerNode.getElementsByTagName(`itemQty`)[0].childNodes[0].nodeValue}</div>
+                            </div>
+                    </div>
+                    </div>`);
+                divElement.appendChild(rowItem1);
+                divElement.appendChild(rowItem2);
+                divElement.appendChild(rowItem3);
+            }
+        }
+    </script>
+</body>
+
+</html>
