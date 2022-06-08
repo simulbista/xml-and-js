@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="./3-data.xsl"?>
+<!DOCTYPE books 
+[
+  <!ELEMENT books (book+)>
+  <!ELEMENT book (title,authors,year,price,category)>
+  <!ELEMENT title (#PCDATA)>
+  <!ELEMENT authors (author+)>
+  <!ELEMENT year (#PCDATA)>
+  <!ELEMENT price (#PCDATA)>
+  <!ELEMENT category (#PCDATA)>
+  <!ELEMENT author (#PCDATA)>
+]> 
+<books>
+    <book>
+        <title>Everyday Italian</title>
+        <authors>
+            <author>Giada De Laurentiis</author>
+        </authors>
+        <year>2005</year>
+        <price>30.0</price>
+        <category>cooking</category>
+    </book>
+    <book>
+        <title>Harry Potter</title>
+        <authors>
+            <author>J K. Rowling</author>
+        </authors>
+        <year>2005</year>
+        <price>29.99</price>
+        <category>children</category>
+    </book>
+    <book>
+        <title>XQuery Kick Start</title>
+        <authors>
+            <author>James McGovern</author>
+            <author>Per Bothner</author>
+            <author>Kurt Cagle</author>
+            <author>James Linn</author>
+            <author>Vaidyanathan Nagarajan</author>
+        </authors>
+        <year>2003</year>
+        <price>49.99</price>
+        <category>web</category>
+    </book>
+    <book>
+        <title>Learning XML</title>
+        <authors>
+            <author>Erik T. Ray</author>
+        </authors>
+        <year>2005</year>
+        <price>39.95</price>
+        <category>web</category>
+    </book>
+</books>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="data.css" />
+</head>
+
+<body>
+    <h1>Books Catalog</h1>
+    <div id="books">
+    </div>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                displayData(this.responseXML);
+            }
+        };
+        xhttp.open("GET", "1-data.xml", true);
+        xhttp.send();
+
+        function stringToNode(html) {
+            const template = document.createElement(`template`);
+            html = html.trim();
+            template.innerHTML = html;
+            return template.content.firstChild;
+        }
+
+        function displayData(xmlDoc) {
+            const listElement = document.getElementById(`books`);
+
+            const bookNodes = xmlDoc.getElementsByTagName(`book`);
+
+            for (let index = 0; index < bookNodes.length; index++) {
+                const bookNode = bookNodes[index];
+                const rowItem = stringToNode(`<div id ="row"> 
+                    <div>${bookNode.getElementsByTagName(`category`)[0].childNodes[0].nodeValue}</div>
+                    <div>${bookNode.getElementsByTagName(`title`)[0].childNodes[0].nodeValue}
+                    <div>${bookNode.getElementsByTagName(`author`)[0].childNodes[0].nodeValue}</div>
+                    <div>Book was written in ${bookNode.getElementsByTagName(`year`)[0].childNodes[0].nodeValue}</div>
+                    <div>Retail Price is ${bookNode.getElementsByTagName(`price`)[0].childNodes[0].nodeValue}</div>                  
+                    </div>`);
+          listElement.appendChild(rowItem);
+        }
+      }
+    </script>
+</body>
+
+</html>
