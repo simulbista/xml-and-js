@@ -104,3 +104,17 @@ save result into `parsed` variable and console.log it
 
 - Filter out data to have ids greater than 5 only, save it into `filtered` variable, and console.log the result
 - Attach screenshot of the output in your terminal
+
+
+
+Screenshots of output:
+
+1) MAP
+
+![image info](/screenshots/1-output-map1.png)
+
+![image info](/screenshots/1-output-map2.png)
+
+2) Filter
+
+![image info](/screenshots/2-output-filter.png)
