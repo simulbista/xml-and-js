@@ -89,10 +89,11 @@ const parsed = data.map((record) => ({
   gender: record.gender,
   ipAddress: record.ip_address,
 }));
-console.log(parsed);
+console.log("Parsed data using map function");
+console.log( parsed);
 
 //filter function to display item with id greater than 5
 
 const filtered = parsed.filter((record) => record.id>5 );
-
+console.log("Filtered the parsed data using filter function");
 console.log(filtered);
