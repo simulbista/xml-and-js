@@ -17,3 +17,7 @@
 - Refactor your code to use chaining
 - console.log the result
 - Attach screenshot of the output in your terminal
+
+OUTPUT:
+
+![image info](screenshots/assignment-output.png)
