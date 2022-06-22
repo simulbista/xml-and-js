@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="jobs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name = "job" type="jobType" minOccurs="0" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="jobType">
+        <xs:sequence>
+             <xs:element name="startDate" type="xs:string"/>
+             <xs:element name="endDate" type="xs:string"/>
+             <xs:element name="address" type="addressType" minOccurs="1" maxOccurs="unbounded"/>
+             <xs:element name="contractors" type="contractorsType" minOccurs="0" maxOccurs="unbounded"/>
+             <xs:element name="workers" type="workersType"/>
+             <xs:element name="equipments" type="equipmentsType" minOccurs="1"/>
+             <xs:element name="supplies" type="suppliesType" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    
+        <!-- addresss -->
+        <xs:complexType name="addressType">
+            <xs:sequence>
+                <xs:element name="street" type="xs:string"/>
+                <xs:element name="city" type="xs:string"/>
+                <xs:element name="region" type="xs:string"/>
+                <xs:element name="country" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+
+
+        <!-- contractors -->
+        <xs:complexType name="contractorsType">
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+
+        <!-- workers -->
+        <xs:complexType name="workersType">
+            <xs:sequence>
+                <xs:element name="worker" type="workerType" minOccurs="1"  maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+
+            <!-- worker -->
+            <xs:complexType name="workerType">
+                <xs:sequence>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="role" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        <!-- equipments -->
+        <xs:complexType name="equipmentsType">
+            <xs:sequence>
+                <xs:element name="equipment" type="equipmentType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>     
+
+            <!-- equipment     -->
+            <xs:complexType name="equipmentType">
+                <xs:sequence>
+                    <xs:element name="type" type="xs:string"/>
+                    <xs:element name="quantity" type="xs:integer"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        <!-- supplies -->
+        <xs:complexType name="suppliesType">
+            <xs:sequence>
+                <xs:element name="supply" type="supplyType" minOccurs="1" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>     
+
+            <!-- supply     -->
+            <xs:complexType name="supplyType">
+                <xs:sequence>
+                    <xs:element name="material" type="xs:string"/>
+                    <xs:element name="qty" type="xs:integer"/>
+                </xs:sequence>
+            </xs:complexType>
+</xs:schema>
