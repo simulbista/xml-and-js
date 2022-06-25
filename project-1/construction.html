@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./construction.css" />
+  </head>
+  <body>
+    <h1>Construction (Jobs)</h1>
+    <ol id="jobs"></ol>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            displayData(this.responseXML);
+          }
+        };
+        xhttp.open("GET", "construction.xml", true);
+        xhttp.send();
+  
+        function stringToNode(html) {
+          const template = document.createElement(`template`);
+          html = html.trim();
+          template.innerHTML = html;
+          return template.content.firstChild;
+        }
+
+        function createJob(job){        
+            const content =`<li>
+            <article>
+                <p><b>Start Date: </b>${job.startDate}</p>
+                <p><b>End Date: </b>${job.endDate}</p>
+                <h4>Address:</h4><ul><li>Street: ${job.addressArray.street}</li><li>City: ${job.addressArray.city}</li><li>Region: ${job.addressArray.region}</li><li>Country: ${job.addressArray.country}</li></ul>
+                <h4>Workers Info:</h4> ${createWorkers(job.workers)}
+                <h4>Equipments Info:</h4> ${createEquipments(job.equipments)}
+                <h4>Supplies Info:</h4> ${createSupplies(job.supplies)}
+            </article>
+        </li>`;
+
+            return stringToNode(content);
+        }
+
+        function parseJob(xml){
+
+            const startDate = xml.getElementsByTagName(`startDate`)[0].childNodes[0].nodeValue;
+            const endDate = xml.getElementsByTagName(`endDate`)[0].childNodes[0].nodeValue;
+
+            //child of address
+            const address = xml.getElementsByTagName(`address`)[0];
+            const street  = address.getElementsByTagName(`street`)[0].childNodes[0].nodeValue;
+            const city  = address.getElementsByTagName(`city`)[0].childNodes[0].nodeValue;
+            const region  = address.getElementsByTagName(`region`)[0].childNodes[0].nodeValue;
+            const country  = address.getElementsByTagName(`country`)[0].childNodes[0].nodeValue;
+            const addressArray = ({
+                'street' : street,
+                'city' : city,
+                'region' : region,
+                'country' : country,
+            });
+
+            //child of workers
+            const workersXml = xml.getElementsByTagName("workers")[0];
+            //parse workers
+            const workers = parseWorkers(workersXml);
+
+            //child of equipments
+            const equipmentsXml = xml.getElementsByTagName("equipments")[0];
+            //parse equipments
+            const equipments = parseEquipments(equipmentsXml);
+            
+            //child of supplies
+            const suppliesXml = xml.getElementsByTagName(`supplies`)[0];
+            //parse supplies
+            const supplies = parseSupplies(suppliesXml);
+
+            return{
+                startDate,
+                endDate,
+                addressArray,
+                workers,
+                equipments,
+                supplies
+            };
+        }
+
+        function createSupplies(supplies){
+            let content = `<ul>`;
+                for(let i=0;i<supplies.length;i++){
+                    content += `<li>Material(qty): ${supplies[i].material}(${supplies[i].qty})</li>`
+                }
+            content+=`</ul>`;
+            return content;
+        }
+
+        function createEquipments(equipments){ 
+            let content = `<ul>`;
+            for(let i=0;i<equipments.length;i++){
+                content+=`<li>Type(qty): ${equipments[i].type} (${equipments[i].quantity})</li>`
+            }
+            content+=`</ul>`;
+            return content;
+        }
+
+        function createWorkers(workers){
+            let content = `<ul>`
+            for(let i=0;i<workers.length;i++){
+                content+=`<li>${workers[i].firstName} ${workers[i].lastName} (${workers[i].role})</li>`;
+            }
+            content+=`</ul>`;
+            return content;
+        }
+
+        function parseSupplies(suppliesXml){
+            const supplyNodes = suppliesXml.getElementsByTagName(`supply`);
+            supplies = [];
+            for(let i=0;i<supplyNodes.length;i++){
+                const material = supplyNodes[i].getElementsByTagName(`material`)[0].childNodes[0].nodeValue;
+                const qty = supplyNodes[i].getElementsByTagName(`qty`)[0].childNodes[0].nodeValue;
+                supplies.push({
+                    'material' : material,
+                    'qty' : qty
+                });
+            }
+            return supplies;
+        }
+
+        function parseEquipments(equipmentsXml){
+            const equipmentsNodes = equipmentsXml.getElementsByTagName(`equipment`);
+            equipments = [];
+            for(let i=0;i<equipmentsNodes.length;i++){
+                const type = equipmentsNodes[i].getElementsByTagName(`type`)[0].childNodes[0].nodeValue;
+                const quantity = equipmentsNodes[i].getElementsByTagName(`quantity`)[0].childNodes[0].nodeValue;
+                equipments.push({
+                'type' : type,
+                'quantity' : quantity
+                });
+            }
+            return equipments;
+        }
+
+
+        function parseWorkers(workersXml){
+            const workerNodes = workersXml.getElementsByTagName(`worker`);
+            const workers = [];
+            for(let i=0;i<workerNodes.length;i++){
+                const firstName = workerNodes[i].getElementsByTagName(`firstName`)[0].childNodes[0].nodeValue;
+                const lastName = workerNodes[i].getElementsByTagName(`lastName`)[0].childNodes[0].nodeValue;
+                const role = workerNodes[i].getElementsByTagName(`role`)[0].childNodes[0].nodeValue;
+                workers.push({'firstName':firstName,
+                    'lastName' : lastName,
+                    'role' : role
+                });
+            }
+            return workers;
+        }
+  
+        function displayData(xmlDoc) {
+          const listElement = document.getElementById(`jobs`);
+  
+          const jobNodes = xmlDoc.getElementsByTagName(`job`);
+          for (let index = 0; index < jobNodes.length; index++) {
+            const jobNode = jobNodes[index];
+            // parse xml nodes into json
+            const parsedJob = parseJob(jobNode);
+            // create job html elements from the json object
+            const jobElement = createJob(parsedJob);
+            listElement.appendChild(jobElement);
+          }
+        }
+      </script>
+  </body>
+</html>

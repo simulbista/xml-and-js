@@ -1,0 +1,40 @@
+ol{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#jobs{
+    padding: 0;
+    list-style: none;
+    margin-left: 20px;
+}
+
+article{
+    border: 1px solid rgb(175, 86, 45);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 10px;
+    width: 300px;
+    height: 600px;
+    background-color: bisque;
+}
+
+b{
+    color: red;
+}
+
+h4{
+    color: blueviolet;
+    padding-left: 10px;
+}
+
+p{
+    text-align: center;
+}
+
+h1{
+    padding-left: 50px;
+    color: cornflowerblue;
+    text-align: center;
+}
