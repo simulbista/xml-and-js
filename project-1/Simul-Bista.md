@@ -1,4 +1,4 @@
-<!-- Author: Simul Bista (N01489966) -->
+Author: Simul Bista (N01489966)
 
 My contributions in the project include:
 
