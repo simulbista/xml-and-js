@@ -1,5 +1,5 @@
 <!-- Simul Bista - N01489966 -->
-<!-- promisifying (xml http request) -->
+<!-- promisifying (fetch) -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,18 +25,20 @@
     </div>
     <script>
 
-        const xhr = (url, method = "GET") =>(
-            new Promise((resolve) => {
-                const xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        displayData(this.responseXML);
-                     }
-        };
-        xhttp.open(method, url, true);
-        xhttp.send();
-            })
-        );
+        // const xhr = (url, method = "GET") =>(
+        //     new Promise((resolve) => {
+        //         const xhttp = new XMLHttpRequest();
+        //         xhttp.onreadystatechange = function() {
+        //             if (this.readyState == 4 && this.status == 200) {
+        //                 displayData(this.responseXML);
+        //              }
+        // };
+        // xhttp.open(method, url, true);
+        // xhttp.send();
+        //     })
+        // );
+
+
 
         
 
@@ -88,7 +90,11 @@
             }
         }
 
-        xhr('../customers.xml').then(displayData);
+        fetch("../customers.xml")
+        .then((response) => response.text())
+        .then((str) => new DOMParser().parseFromString(str,"text/xml"))
+        .then(displayData);
+
     </script>
 </body>
 
