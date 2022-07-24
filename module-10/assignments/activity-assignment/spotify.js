@@ -43,9 +43,37 @@ const getPlaylistsByGenre = async(token, genreId) => {
     });
 
     const data = await result.json();
+    console.log(data.playlists.items)
     return data.playlists.items;
 }
 
+const getTracks = async(token, tracksEndPoint) =>{
+    const limit = 10;
+
+    const result = await fetch(`${tracksEndPoint}?limit=${limit}`,{
+        method: `GET`,
+        headers:{
+            Authorization : "Bearer " + token
+        }
+    });
+
+    const data = await result.json();
+    return data.items;
+}
+
+
+const getTrack = async(token, trackEndPoint) =>{
+
+    const result = await fetch(`${trackEndPoint}`,{
+        method: `GET`,
+        headers:{
+            Authorization : "Bearer " + token
+        }
+    });
+
+    const data = await result.json();
+    return data;
+}
 
 const loadGenres = async() => {
     const token = await getToken();
@@ -54,20 +82,22 @@ const loadGenres = async() => {
 
     const list = document.getElementById(`genres`);
 
-    genres.map(async({name,id,icons:[image]}) => {
+    genres.map(async({name,id}) => {
 
         const playlists = await getPlaylistsByGenre(token,id);
-        console.log(playlists);
-        const playlistsList = playlists.map(({name, id, href, images: [icon] }) => {
+        // console.log(playlists);
+        const playlistsList = playlists.map(({name, id,external_urls: { spotify },images: [icon]}) => {
             return `
             <li key="${id}">
-                <a href="${href}" target ="_blank">
+                
+                <a href="${spotify}" target ="_blank">
                     <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
                 </a>
             </li>
             `
         }).join(``);
-        // console.log(playlistsList);
+
+        
         const html = `
             <article>
                 <div id="genreTitle">${name}</div>
