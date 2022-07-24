@@ -43,14 +43,13 @@ const getPlaylistsByGenre = async(token, genreId) => {
     });
 
     const data = await result.json();
-    console.log(data.playlists.items)
     return data.playlists.items;
 }
 
-const getTracks = async(token, tracksEndPoint) =>{
-    const limit = 10;
-
-    const result = await fetch(`${tracksEndPoint}?limit=${limit}`,{
+const getTracks = async(token, playlistId) =>{
+    const limit = 5;
+    "https://api.spotify.com/v1/playlists/37i9dQZF1DWUa8ZRTfalHk/tracks"
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
         method: `GET`,
         headers:{
             Authorization : "Bearer " + token
@@ -59,20 +58,6 @@ const getTracks = async(token, tracksEndPoint) =>{
 
     const data = await result.json();
     return data.items;
-}
-
-
-const getTrack = async(token, trackEndPoint) =>{
-
-    const result = await fetch(`${trackEndPoint}`,{
-        method: `GET`,
-        headers:{
-            Authorization : "Bearer " + token
-        }
-    });
-
-    const data = await result.json();
-    return data;
 }
 
 const loadGenres = async() => {
@@ -85,17 +70,37 @@ const loadGenres = async() => {
     genres.map(async({name,id}) => {
 
         const playlists = await getPlaylistsByGenre(token,id);
-        // console.log(playlists);
-        const playlistsList = playlists.map(({name, id,external_urls: { spotify },images: [icon]}) => {
-            return `
-            <li key="${id}">
+
+
+        // const playlistsList = playlists.map(({name, id,external_urls: { spotify },images: [icon]}) => {
+        //     return `
+        //     <li key="${id}">
                 
-                <a href="${spotify}" target ="_blank">
-                    <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
-                </a>
-            </li>
-            `
-        }).join(``);
+        //         <a href="${spotify}" target ="_blank">
+        //             <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
+        //         </a>
+        //     </li>
+        //     `
+        // }).join(``);
+
+
+        const playlistsList = playlists.map(async ({name, id,external_urls: { spotify },images: [icon]}) => {
+
+            const tracks = await getTracks(token,id);
+
+            // console.log(tracks);
+            const tracksList = tracks.map(async({track: [tr],artist: [ar]}) =>{
+                return `
+                <li key>
+                    ${tr.name}
+                    <a href="${spotify}" target ="_blank">
+                        <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
+                    </a>
+                </li>
+                `
+            }).join(``);
+            
+        })
 
         
         const html = `
