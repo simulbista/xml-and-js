@@ -24,6 +24,8 @@ li{
 
 li:hover{
     opacity: 1;
+    color: #fff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 
@@ -37,4 +39,8 @@ article{
 
 article:hover #genreTitle{
     color: #fff;
+}
+
+ol{
+    border: 2px white dotted;
 }

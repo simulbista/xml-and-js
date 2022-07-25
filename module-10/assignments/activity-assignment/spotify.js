@@ -48,8 +48,7 @@ const getPlaylistsByGenre = async(token, genreId) => {
 
 const getTracks = async(token, playlistId) =>{
     const limit = 5;
-    "https://api.spotify.com/v1/playlists/37i9dQZF1DWUa8ZRTfalHk/tracks"
-    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`,{
+    const result = await fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks?limit=${limit}`,{
         method: `GET`,
         headers:{
             Authorization : "Bearer " + token
@@ -71,7 +70,6 @@ const loadGenres = async() => {
 
         const playlists = await getPlaylistsByGenre(token,id);
 
-
         // const playlistsList = playlists.map(({name, id,external_urls: { spotify },images: [icon]}) => {
         //     return `
         //     <li key="${id}">
@@ -84,25 +82,35 @@ const loadGenres = async() => {
         // }).join(``);
 
 
-        const playlistsList = playlists.map(async ({name, id,external_urls: { spotify },images: [icon]}) => {
+        const playlistsList = await(await Promise.all(playlists.map(async ({name, id,external_urls: { spotify },images: [icon]}) => {
 
             const tracks = await getTracks(token,id);
+            const tracksList = tracks.map(({track}) =>{
+                const artistArray = track.artists.map(artist => artist.name).join(`,`);
+                return track.name + '-' + artistArray;
+            })
 
-            // console.log(tracks);
-            const tracksList = tracks.map(async({track: [tr],artist: [ar]}) =>{
-                return `
-                <li key>
-                    ${tr.name}
-                    <a href="${spotify}" target ="_blank">
-                        <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
-                    </a>
-                </li>
-                `
-            }).join(``);
+            console.log(tracksList);
+            const track = tracksList.map((data) =>{
+                return `<li>${data}</li>`
+            }).join(``)
+
+            return `
+            <li key='id'>
+                <a href="${spotify}" target ="_blank">
+                    <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
+                </a>
+                
+                <ol>
+                Track Name (Artists)
+                    ${track}
+                </ol>
+            </li>
+            `
             
-        })
+        }))).join(``);
 
-        
+        // console.log(playlistsList);
         const html = `
             <article>
                 <div id="genreTitle">${name}</div>
