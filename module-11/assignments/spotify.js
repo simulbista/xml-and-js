@@ -80,6 +80,7 @@ const loadGenres = async() => {
 
 const renderGenres = (term) => {
     let source = _data;
+    // console.log(_data);
     if(Boolean(term)){
         const searchTerm = term.toLowerCase();
 
@@ -88,16 +89,24 @@ const renderGenres = (term) => {
     
     const html = source.reduce((acc, {name,playlists}) => {
         const playlistsHTML = playlists.reduce(
-            (playListAcc, {name, external_urls: { spotify },images: [icon]}) => 
-            playListAcc +
-            `
-            <li>
-                <a href="${spotify}" alt="${name} target ="_blank">
-                    <img src = "${icon.url}" width="200" height="200""/>
-                </a>
-            </li>`,    
-            ``
-        );
+            (playListAcc, {name, external_urls: { spotify },images: [icon],tracks}) =>
+            {
+            const trackHTML = tracks.map(tr => {
+                if(tr && tr.track){
+                    return `<li>
+                    ${tr.track.name}
+                    </li>`
+                }
+            }).join(``);
+
+            return (playListAcc +
+                        `<li>
+                            <a href="${spotify}" alt="${name} target ="_blank">
+                                <img src = "${icon.url}" width="200" height="200""/>
+                                <ol id="tracks">${trackHTML}</ol>
+                            </a>
+                        </li>`);
+                    }, ``);
             return (
                 acc + 
             `
@@ -134,72 +143,3 @@ const onSubmit = event =>{
 const onReset = () =>{
     renderGenres();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const loadGenres_old = async() => {
-//     const token = await getToken();
-//     const genres = await getGenres(token);
-    
-
-//     const list = document.getElementById(`genres`);
-
-//     genres.map(async({name,id}) => {
-
-//         const playlists = await getPlaylistsByGenre(token,id);
-
-//         const playlistsList = await(await Promise.all(playlists.map(async ({name, id,external_urls: { spotify },images: [icon]}) => {
-
-//             const tracks = await getTracks(token,id);
-//             const tracksList = tracks.map(({track}) =>{
-//                 const artistArray = track.artists.map(artist => artist.name).join(`,`);
-//                 return track.name + '-' + artistArray;
-//             })
-
-//             console.log(tracksList);
-//             const track = tracksList.map((data) =>{
-//                 return `<li>${data}</li>`
-//             }).join(``)
-
-//             return `
-//             <li key='id'>
-//                 <a href="${spotify}" target ="_blank">
-//                     <img src = "${icon.url}" width="200" height="200" alt="${name}"/>
-//                 </a>
-                
-//                 <ol>
-//                 Track Name (Artists)
-//                     ${track}
-//                 </ol>
-//             </li>
-//             `
-            
-//         }))).join(``);
-
-//         // console.log(playlistsList);
-//         const html = `
-//             <article>
-//                 <div id="genreTitle">${name}</div>
-//                 <div class="playlists">
-//                     <ul>
-//                     ${playlistsList}
-//                     </ul>
-//                 </div>
-//             </article>
-//         `;
-//         list.insertAdjacentHTML(`beforebegin`,html);
-//     });
-   
-// }
