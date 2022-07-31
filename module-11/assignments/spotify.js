@@ -78,19 +78,22 @@ const loadGenres = async() => {
     }));
 }
 
-const renderGenres = (term) => {
-    let source = _data;
-    console.log(_data);
-    // if(Boolean(term)){
-    //     const searchTerm1 = term.toLowerCase();
-    //     source = source.filter(({name}) => name.toLowerCase().includes(searchTerm1));
-    // }
-    if(Boolean(term)){
-        const searchTerm2 = term.toLowerCase();
-        source = source.filter(({playlists}) => playlists.toLowerCase().includes(searchTerm2));
+const renderGenres = (filterTerm,playlistTerm) => {
+    source = _data;
+    if(Boolean(filterTerm)){
+        const fTerm = filterTerm.toLowerCase();
+        source = source.filter(({name}) => name.toLowerCase().includes(fTerm));
+    }
+
+    if(Boolean(playlistTerm)){
+        if(playlistTerm === 'with-playlist'){
+            source = source.filter(({playlists}) => playlists.length > 0); 
+        }else if(playlistTerm === 'without-playlist'){
+            source = source.filter(({playlists}) => playlists.length === 0); 
+        }
     }
     
-    const html = source.reduce((acc, {name,playlists}) => {
+    const html = source.reduce((acc, {name, playlists}) => {
         const playlistsHTML = playlists.reduce(
             (playListAcc, {name, external_urls: { spotify },images: [icon],tracks}) =>
             {
@@ -139,9 +142,9 @@ loadGenres().then(() => {
 
 const onSubmit = event =>{
     event.preventDefault();
-    const term1 = event.target.term1.value;
-    const term2 = event.target.term2.value;
-    renderGenres(term2);
+    const filterTerm = event.target.term1.value;
+    const playlistTerm = event.target.term2.value;
+    renderGenres(filterTerm,playlistTerm);
 }
 
 const onReset = () =>{
