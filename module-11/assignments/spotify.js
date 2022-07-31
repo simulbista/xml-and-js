@@ -80,11 +80,14 @@ const loadGenres = async() => {
 
 const renderGenres = (term) => {
     let source = _data;
-    // console.log(_data);
+    console.log(_data);
+    // if(Boolean(term)){
+    //     const searchTerm1 = term.toLowerCase();
+    //     source = source.filter(({name}) => name.toLowerCase().includes(searchTerm1));
+    // }
     if(Boolean(term)){
-        const searchTerm = term.toLowerCase();
-
-        source = source.filter(({name}) => name.toLowerCase().includes(searchTerm));
+        const searchTerm2 = term.toLowerCase();
+        source = source.filter(({playlists}) => playlists.toLowerCase().includes(searchTerm2));
     }
     
     const html = source.reduce((acc, {name,playlists}) => {
@@ -136,8 +139,9 @@ loadGenres().then(() => {
 
 const onSubmit = event =>{
     event.preventDefault();
-    const term = event.target.term.value;
-    renderGenres(term);
+    const term1 = event.target.term1.value;
+    const term2 = event.target.term2.value;
+    renderGenres(term2);
 }
 
 const onReset = () =>{

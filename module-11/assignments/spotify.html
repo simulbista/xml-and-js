@@ -12,11 +12,17 @@
         <form onsubmit="onSubmit(event)" onreset="onReset()">
             <label for="genre-filter-term">Filter Genre</label>
             <input 
-            name="term"
+            name="term1"
             id="genre-filter-term"
             placeholder="Enter genre name" 
             type="text"
             /> 
+            <div>
+            <input type="radio" id="w-play" name="term2" value="with-playlist">
+              <label for="with-playlist">Genres with playlist</label><br>
+             <input type="radio" id="wo-play" name="term2" value="without-playlist">
+              <label for="without-playlist">Genres without playlist</label><br>
+            </div>
             <button type="submit">Apply Filter</button>
             <button type="reset">Reset Filter</button>
         </form>
