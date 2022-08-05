@@ -7,6 +7,16 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
+    <form onsubmit="onSubmit(event)">
+      <label for="input-filter-term">Find genre</label>
+      <input
+        type="text"
+        name="term"
+        id="input-filter-term"
+        placeholder="Enter value"
+      />
+      <button type="submit">Apply filters</button>
+    </form>
       <div id="news"></div>
     <script src="app.js" type="text/javascript"></script>
   </body>
