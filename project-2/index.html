@@ -3,20 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spotify API</title>
+    <title>News Portal(API)</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <form onsubmit="onSubmit(event)">
-      <label for="input-filter-term">Find genre</label>
-      <input
-        type="text"
-        name="term"
-        id="input-filter-term"
-        placeholder="Enter value"
-      />
-      <button type="submit">Apply filters</button>
-    </form>
+    <div id="pageTitle">
+      <h1>News Portal - mediastack API</h1>
+    </div>
+    <div id="filter">
+      <form onsubmit="onSubmit(event)" onreset="onReset()">
+        <div>
+          <label for="titles">Filter Title</label>
+          <input 
+          name="titleTerm"
+          id="titles"
+          placeholder="Enter title" 
+          type="text"
+          /> 
+        </div>
+        <div>
+          <label for="countries">Filter Country</label>
+          <select name="countryTerm" id="countries">
+            <option value="all">All</option>
+            <option value="eg">Egypt</option>
+            <option value="iq">Iraq</option>
+            <option value="ma">Morocco</option>
+          </select>
+        </div>
+        <div>
+          <button type="submit">Apply Filter</button>
+          <button type="reset">Reset Filter</button>
+        </div>
+      </form>
+  </div>
       <div id="news"></div>
     <script src="app.js" type="text/javascript"></script>
   </body>
