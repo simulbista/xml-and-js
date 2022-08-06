@@ -31,7 +31,6 @@ const loadNews = async(titleTerm,countryTerm) => {
         _source = _source.filter(({title}) => title.toLowerCase().includes(tTerm));
     }
 
-    console.log(_source);
     //filtering by country
     if(Boolean(countryTerm) && countryTerm!=='all'){
         _source = _source.filter(({country}) => country===countryTerm);
