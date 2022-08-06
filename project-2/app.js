@@ -46,9 +46,11 @@ const loadNews = async(titleTerm,countryTerm) => {
                 </div>
                 <div id="content">
                     <h1 id='newsTitle'>Title: ${title.substring(0, 35)}...</h2>
+                    <hr>
                     <h4>Category: ${category}</h4> 
                     <h4>Country: ${countryMap[country]}</h4>
                 </div>
+                <div id="readMore"><a href="${url}" target="_blank" class="button">Read More!</a></div>
             </article>
         `;
         list.insertAdjacentHTML("beforeend", html);
