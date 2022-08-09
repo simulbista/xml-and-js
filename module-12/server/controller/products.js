@@ -1,7 +1,27 @@
 const products = require("../data/products.json");
 
-const getAll = () => new Promise((resolve) => {
-    return resolve({code: 200, data: JSON.stringify(products)});
+const getAll = ({name,description,price}) => new Promise((resolve) => {
+    let result = Array.from(products);
+
+    if(name){
+        result = result.filter((item) => 
+            item.name.toLowerCase().includes(name.toLowerCase())
+        );
+    }
+
+    if(description){
+        result = result.filter((item) => 
+            item.description.toLowerCase().includes(description.toLowerCase())
+        );
+    }
+
+    if(price){
+        result = result.filter((item) => 
+            price === `${item.price}`
+        );
+    }
+
+    resolve({code: 200, data: JSON.stringify(result)});
 })
 
 const getById = (id) => new Promise((resolve) => {

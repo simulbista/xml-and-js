@@ -1,14 +1,24 @@
 const http = require(`http`);
 const products = require(`../server/controller/products`);
 
+// convert search parameters from the url i.e. in string to objects
+const parseURLParams = value =>{
+    const params = new URLSearchParams(value);
+    return Array.from(params.entries()).reduce((acc,[key,value]) =>({...acc,[key]: value}),{})
+}
+
 const server = http.createServer(async(req,res) => {
-    
-    if(req.url === `/api/products` && req.method === `GET`){
-        const {code,data} = await products.getAll();
+    const [basePath,paramsString] = req.url.split("?");
+
+
+    if(basePath === `/api/products` && req.method === `GET`){
+        const params = parseURLParams(paramsString);
+
+        const {code,data} = await products.getAll(params);
         res.writeHead(code,{"Content-type" : "application"});
         res.end(data);
-    }else if(req.method === `GET` && req.url.match(/\/api\/products\/\w+/)){
-        const id = req.url.split("/")[3];
+    }else if(req.method === `GET` && basePath.match(/\/api\/products\/\w+/)){
+        const id = basePath.split("/")[3];
         const {code,data} = await products.getById(id);
         res.writeHead(code,{"Content-type" : "application"});
         res.end(data);
