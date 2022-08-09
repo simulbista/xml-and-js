@@ -31,10 +31,11 @@ const server = http.createServer(async(req,res) => {
         const {code,data} = await lotr.getAllMovies();
         res.writeHead(code,{"Content-type" : "application"});
         res.end(data);
-    }else if(basePath ===`/api/lotr/chapters`){
-        const {code,data} = await lotr.getAllChapters();
-        res.writeHead(code,{"Content-type" : "application"});
-        res.end(data);
+    }else if(basePath ===`/api/lotr/chapters`){    //get all books and their chapters
+        //const {code,data} = 
+        await lotr.getAllBooksWithChapters();
+        //res.writeHead(code,{"Content-type" : "application"});
+        //res.end(data);
     }else{
         res.writeHead(404,{"Content-type" : "application"});
         res.end(JSON.stringify({message : "Route not found!"}));
