@@ -1,5 +1,6 @@
 const http = require(`http`);
-const products = require(`../server/controller/products`);
+const products = require(`../server-simul/controller/products`);
+const lotr = require(`../server-simul/controller/lotr`);
 
 // convert search parameters from the url i.e. in string to objects
 const parseURLParams = value =>{
@@ -20,6 +21,14 @@ const server = http.createServer(async(req,res) => {
     }else if(req.method === `GET` && basePath.match(/\/api\/products\/\w+/)){
         const id = basePath.split("/")[3];
         const {code,data} = await products.getById(id);
+        res.writeHead(code,{"Content-type" : "application"});
+        res.end(data);
+    }else if(basePath ===`/api/lotr/books`){
+        const {code,data} = await lotr.getAllBooks();
+        res.writeHead(code,{"Content-type" : "application"});
+        res.end(data);
+    }else if(basePath ===`/api/lotr/movies`){
+        const {code,data} = await lotr.getAllMovies();
         res.writeHead(code,{"Content-type" : "application"});
         res.end(data);
     }else{
