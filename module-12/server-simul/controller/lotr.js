@@ -2,9 +2,10 @@
 
 const { default: axios } = require("axios");
 
+// const token = "JDqUYiAhsyc1RLFvNapQ";
 //actual token added in vercel as an enviroment variable
 const token = process.env.LOTR_TOKEN;
-// const token = "JDqUYiAhsyc1RLFvNapQ";
+
 const endpoint = "https://the-one-api.dev/v2";
 
 const getAllBooks = async () => {
