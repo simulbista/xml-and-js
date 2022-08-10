@@ -4,13 +4,12 @@
  * @param {*} data - see shape in ../../data.example.json
  * @returns Array of users
  */
- const data = require("../data.example.json");
 
 // const getActiveUsers = (data) => {};
 
 
 
-const getActiveUsers = data.filter((item) => item.isSuspended === false);
+const getActiveUsers = data =>data.filter((item) => item.isSuspended === false);
 
 
 module.exports = getActiveUsers;

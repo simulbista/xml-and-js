@@ -17,8 +17,8 @@ const loadData = async () => {
    */
 
    try {
-    const { data } = await axios.get(`${endpoint}`);
-    return JSON.parse(data);
+    const { data } = await axios.get(endpoint);
+    return data;
   } catch (error) {
     return error.message;
   }

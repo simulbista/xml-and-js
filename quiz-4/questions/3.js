@@ -11,8 +11,8 @@
  const data = require("../data.example.json");
 
 
-const getUserNameAndVehicleAge = data.map((item) => {item.userName,item.vehicle.reduce((acc,item) => {
+const getUserNameAndVehicleAge = data.map((item) => ({name: item.userName,item.vehicle.reduce((acc,item) => {
     return acc + item.age
-},0)});
+},0)}));
 
 module.exports = getUserNameAndVehicleAge;
