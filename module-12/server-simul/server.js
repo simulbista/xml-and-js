@@ -36,6 +36,7 @@ const server = http.createServer(async(req,res) => {
         res.writeHead(code,{"Content-type" : "application"});
         res.end(data);
     }else{
+        console.log("m here");
         res.writeHead(404,{"Content-type" : "application"});
         res.end(JSON.stringify({message : "Route not found!"}));
     }
